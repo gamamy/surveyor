@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo https://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <mongo:mongo-client id="mongoClient" host="mongo-on-docker" />
+
+    <mongo:db-factory id="mongoDbFactory" dbname="test" mongo-client-ref="mongoClient" />
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoDbFactory" />
+    </bean>
+
+    <mongo:repositories
+            base-package="com.example.surveryor.repository" mongo-template-ref="mongoTemplate"/>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <bean id="employee" class="com.example.surveryor.entity.Employee">
+        <property name="id" value="1"></property>
+        <property name="name" value="Gama Muda Yudistira"></property>
+        <property name="active" value="Y"></property>
+    </bean>
+</beans>
