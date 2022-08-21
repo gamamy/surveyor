@@ -2,7 +2,7 @@ Hi, My name is Gama Muda Yudistira
 
 This is my application for managing Employee
 
-In this program, I used several technologies like :
+This is my first time using Mongo DB and I used several technologies like :
 
 - Spring IOC
 - Java Stream
