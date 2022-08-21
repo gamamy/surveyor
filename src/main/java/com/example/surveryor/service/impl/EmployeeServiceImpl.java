@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -24,14 +25,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeByName(String name) {
 
-        Employee employeeList = employeeRepository.findEmployeesByName(name);
-        return employeeList;
+        return employeeRepository.findEmployeesByName(name);
     }
 
     @Override
     public List<Employee> getActiveEmployees() {
 
-        return employeeRepository.findActiveEmployees();
+        List<Employee> employeeList = employeeRepository.findAll();
+
+        // Using java stream
+        return employeeList.stream().filter(emp -> emp.getActive().equalsIgnoreCase("Y")).collect(Collectors.toList());
     }
 
     @Override

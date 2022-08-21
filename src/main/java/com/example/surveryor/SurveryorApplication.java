@@ -18,6 +18,7 @@ public class SurveryorApplication {
     public static void main(String[] args) {
         SpringApplication.run(SurveryorApplication.class, args);
 
+        // Using JAVA IOC
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
 
         Employee employee = context.getBean("employee", Employee.class);
